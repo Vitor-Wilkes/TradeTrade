@@ -59,15 +59,39 @@ nav button{font-size:.5rem;padding:10px 8px;border:2px solid var(--l);box-shadow
 .note{display:flex;gap:10px;background:#000;border:3px solid var(--ac);box-shadow:4px 4px 0 #000,0 0 14px #ffb80055;padding:10px;animation:nin .4s steps(6)}.note.out{opacity:0;transform:translateX(30px);transition:.3s}.ni{font-size:2rem}.nb{flex:1}.nb b{font-family:"Press Start 2P";font-size:.6rem;color:var(--ac);line-height:1.5}.nbt{display:flex;gap:6px;margin-top:6px}.nbt .btn{padding:8px 10px}
 @keyframes nin{from{transform:translateX(120%)}}
 #lock{position:fixed;inset:0;z-index:80;background:#000f;display:grid;place-items:center;text-align:center;padding:20px}#lock h1{font-size:1.1rem;line-height:1.6;margin:12px 0}
-.goal{display:grid;grid-template:repeat(3,64px)/repeat(3,1fr);gap:6px;max-width:360px;margin:10px auto;padding:10px;border:4px solid var(--ink);border-bottom:0;background:repeating-linear-gradient(45deg,#fff1 0 6px,#0000 6px 12px),repeating-linear-gradient(-45deg,#fff1 0 6px,#0000 6px 12px)}
-.goal button{border:3px solid var(--l);background:#0b1f14;color:var(--ink);font-size:1.6rem;position:relative}.goal button:not(:disabled):hover{border-color:var(--good)}.goal button:disabled{opacity:.55}
-.goal .tl{grid-area:1/1}.goal .tr{grid-area:1/3}.goal .c{grid-area:2/2}.goal .bl{grid-area:3/1}.goal .br{grid-area:3/3}
-.goal .ball::after,.goal .glove::before{position:absolute;inset:0;display:grid;place-items:center;font-size:2.2rem;background:#000b;animation:kick .5s steps(5)}.goal .ball::after{content:"⚽"}.goal .glove::before{content:"🧤";z-index:1}@keyframes kick{from{transform:scale(2.4);opacity:0}}
 .sb{display:flex;justify-content:space-around;align-items:flex-start;text-align:center;margin:8px 0}.sb b{display:block;font-size:1.6rem;color:var(--ac);margin:4px 0}.vs{color:var(--mute)}.dots span{display:inline-block;width:14px;height:14px;margin:0 2px;border:2px solid #000;background:#2b3a33}.dots .g{background:var(--good)}.dots .m{background:var(--bad)}
 .rv{font-family:"Press Start 2P";font-size:.8rem;text-align:center;margin:10px 0;line-height:1.6}.rv.win{color:var(--good)}.rv.lose{color:var(--bad)}
-@media (prefers-reduced-motion:reduce){.reveal,.note,.goal .ball::after,.goal .glove::before{animation:none}.tape span{animation:none}}
+.role{display:flex;align-items:center;gap:12px;padding:12px;margin:8px 0;border:4px solid #000;box-shadow:4px 4px 0 #000;font-family:"Press Start 2P";font-size:.7rem;line-height:1.6}.role i{font-style:normal;font-size:2.2rem}.role small{display:block;font-family:VT323;font-size:1.15rem;opacity:.9;margin-top:2px}
+.role.shoot{background:var(--ac);color:#241800}.role.keep{background:#2a7fff;color:#fff}.role.wait{background:#1a2b22;color:var(--mute);border-color:var(--l)}.role.pulse{animation:rp 1s steps(2) infinite}@keyframes rp{50%{filter:brightness(1.3)}}
+.pitch{position:relative;max-width:440px;height:290px;margin:10px auto;overflow:hidden;border:4px solid #000;box-shadow:4px 4px 0 #000;background:repeating-linear-gradient(90deg,#1f6b34 0 36px,#25783b 36px 72px)}
+.pitch::before{content:"";position:absolute;left:6%;right:6%;top:42%;bottom:-3px;border:3px solid #fff8;border-bottom:0}
+.gw{position:absolute;left:11%;right:11%;top:16px;container-type:inline-size}
+.gl{display:grid;grid-template:1fr 1fr/1fr 1fr 1fr;aspect-ratio:2.6/1;border:6px solid #fff;border-bottom:0;box-shadow:0 0 0 3px #000;background:#07150e repeating-linear-gradient(45deg,#fff3 0 2px,#0000 2px 9px),repeating-linear-gradient(-45deg,#fff3 0 2px,#0000 2px 9px)}
+.zn{position:relative;border:2px dashed #fff3;background:none;color:#fff;padding:0}.zn::after{position:absolute;inset:0;display:grid;place-items:center;font-size:1.6rem}
+.zn.tl{grid-area:1/1}.zn.tr{grid-area:1/3}.zn.c{grid-area:1/2/3/3}.zn.bl{grid-area:2/1}.zn.br{grid-area:2/3}
+.zn:not(:disabled){cursor:crosshair}.zn:not(:disabled):hover,.zn:not(:disabled):focus-visible{background:#ffffff33;border:2px solid #fff}
+.pitch[data-r=s] .zn:not(:disabled):hover::after{content:"🎯"}.pitch[data-r=k] .zn:not(:disabled):hover::after{content:"🧤"}
+.zn.pk{background:#ffb80066;border:3px solid var(--ac)}.zn.pk::after{content:"✔"}
+.kb,.kg{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);translate:-50% -50%;line-height:1;pointer-events:none}
+.kb{font-size:2rem;z-index:3;animation:fly .55s cubic-bezier(.2,.8,.3,1) both}.kg{font-size:2.8rem;z-index:2;animation:dive .5s steps(6) both}
+.kg.idle{animation:sway 1s steps(4) infinite alternate}
+@keyframes fly{from{transform:translate(calc((50 - var(--x))*1cqw),calc((66 - var(--y)*.385)*1cqw)) scale(2.4)}}
+@keyframes dive{from{transform:translate(calc((50 - var(--x))*1cqw),calc((62 - var(--y))*.3cqw)) scale(.5);opacity:.3}}
+@keyframes sway{from{transform:translateX(-9cqw)}to{transform:translateX(9cqw)}}
+.spot{position:absolute;left:50%;bottom:30px;translate:-50% 0;font-size:2rem;line-height:1;z-index:1}
+.fx{position:absolute;inset:0;z-index:5;display:grid;place-content:center;text-align:center;pointer-events:none;font-family:"Press Start 2P";font-size:1.5rem;line-height:1.5;text-shadow:4px 4px 0 #000;animation:slam .6s .5s cubic-bezier(.2,1.6,.4,1) both}
+.fx small{display:block;font-size:.55rem;margin-top:8px;color:#fff}.fx.win{color:var(--good);background:radial-gradient(#39ff8844,#0000 70%)}.fx.lose{color:var(--bad);background:radial-gradient(#ff3b5c44,#0000 70%)}
+@keyframes slam{0%{transform:scale(4);opacity:0}60%{transform:scale(.9);opacity:1}100%{transform:scale(1);opacity:1}}
+.pitch.shake{animation:shake .45s .5s}@keyframes shake{20%{translate:-7px 3px}40%{translate:7px -3px}60%{translate:-4px 2px}80%{translate:3px -1px}}
+.wh{position:absolute;inset:0;z-index:4;background:#fff;pointer-events:none;animation:wh .5s .5s both}@keyframes wh{from{opacity:.85}to{opacity:0}}
+.cf{position:absolute;left:50%;top:42%;z-index:4;font-size:1.5rem;pointer-events:none;animation:burst .9s .5s ease-out both}@keyframes burst{from{transform:scale(.3);opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(1.3) rotate(240deg);opacity:0}}
+.cd{position:absolute;inset:0;z-index:6;display:grid;place-items:center;background:#000b}.cd span{font-family:"Press Start 2P";font-size:5rem;color:var(--ac);text-shadow:5px 5px 0 #000;animation:cdp .8s both}.cd.go span{font-size:2.6rem;color:var(--good)}@keyframes cdp{from{transform:scale(2.6);opacity:0}35%{opacity:1}}
+.end{text-align:center;padding:16px;margin:10px 0;border:4px solid;font-family:"Press Start 2P";font-size:.75rem;line-height:1.9;animation:pop .5s}.end b{display:block;font-size:2.2rem}.end.win{color:var(--good);background:#39ff8814}.end.lose{color:var(--bad);background:#ff3b5c14}.end .btn{margin-top:10px}
+#bm{position:fixed;inset:0;z-index:70;background:#000c;display:grid;place-items:center;padding:16px}#bm .card{width:min(380px,100%);margin:0}#bmI{width:100%;font-size:1.8rem;text-align:center}#bm .chips{margin:10px 0}
+@media (prefers-reduced-motion:reduce){.reveal,.note,.role,.fx,.cd span,.kb,.kg,.cf,.wh,.pitch,.end{animation:none!important}.tape span{animation:none}}
 </style></head><body><main>
 <div class="tape" id="tape"></div>
+<div id="bm" class="hide"><div class="card"><h2 id="bmT"></h2><p class="sm" id="bmS"></p><input id="bmI" type="number" min="1" inputmode="numeric" aria-label="Valor da aposta"><div class="chips" id="bmQ"></div><p class="msg lose" id="bmE"></p><div class="row"><button class="btn g" id="bmOk">Confirmar aposta</button><button class="btn alt" id="bmNo">Cancelar</button></div></div></div>
 <div id="fbanner" class="card hide" style="border-color:var(--bad);color:var(--bad);font-weight:600"></div>
 <div id="cfgerr" class="card hide"><b>Falta configurar o Firebase.</b> Cole sua configuração no topo do script do index.html.</div>
 <section id="auth" class="card hide" style="max-width:380px;margin:8vh auto">
@@ -122,7 +146,7 @@ nav button{font-size:.5rem;padding:10px 8px;border:2px solid var(--l);box-shadow
 
  <section id="x1" class="card hide">
   <h2>⚽ x1 de pênaltis</h2>
-  <div id="x1Lobby"><p class="sm">Desafie um jogador que está online. Cada um escolhe quanto apostar. Vence quem fizer mais gols e leva as duas apostas + 1,25x (ou 1,5x se for goleada) do valor do perdedor.</p><ol id="x1On"><li class="rk sm">Carregando jogadores...</li></ol></div>
+  <div id="x1Lobby"><p class="sm">Toque em Desafiar, digite o valor da aposta e pronto. Cada um escolhe quanto apostar. Vence quem fizer mais gols e leva as duas apostas + 1,25x (ou 1,5x se for goleada) do valor do perdedor.</p><ol id="x1On"><li class="rk sm">Carregando jogadores...</li></ol></div>
   <div id="x1Game" class="hide"></div>
  </section>
  <section id="admin" class="card hide"><h2>Painel do admin</h2><p class="sm">Mostra para todos a tela de "horário de aula".</p>
@@ -158,12 +182,14 @@ const firebaseConfig = {
 };
 
 // ===== SEGUNDO BANCO (reserva). Cole aqui o firebaseConfig do outro projeto. Se ficar "COLE_AQUI", só o primeiro é usado. =====
-const firebaseConfig2 = {apiKey: "AIzaSyB5gpBAqhzhLhRBCkqwKc9_9piey1vDok8",
+const firebaseConfig2 = {
+  apiKey: "AIzaSyB5gpBAqhzhLhRBCkqwKc9_9piey1vDok8",
   authDomain: "horadabet-c92e4.firebaseapp.com",
   projectId: "horadabet-c92e4",
   storageBucket: "horadabet-c92e4.firebasestorage.app",
   messagingSenderId: "312348867266",
-  appId: "1:312348867266:web:ec568e363d962b1467d95b"};
+  appId: "1:312348867266:web:ec568e363d962b1467d95b"
+};
 // ===== E-mails de admin (veem o painel de bloqueio) =====
 const ADMINS=['vitorwilkes99@gmail.com'];
 const $=s=>document.querySelector(s);
@@ -178,7 +204,7 @@ const COL=['#e0457b','#2fa37f','#3b82f6','#f59e0b','#a855f7','#e5e7eb'];
 const NAMES=['Pé de Pano','Nem Vem Que Não Tem','Vai Que Dá','Tá Pago','Corre Pra Quê','Zé do Pasto','Pangaré Premium','Sextou Veloz','Aposta do Cunhado','Trovão de Pastel','Dinheiro Sumiu','Foi Só um Giro','Mané Galopante','Café com Leite','Rapidinho Mas Não Muito','Mais Um Pra Casa','Pix Errado','Boleto Vencido','Segunda Chance','Cavalo do Primo','Uber de Pasto','Feijão Tropeiro','Meu Último Real','Já Perdi Mesmo','Tigrinho Zero','Ele Vai Ganhar (Mentira)','Chora Depois','Pônei Ambicioso','Passa Fome Veloz','Saiu o Sol','Capim Turbo','Galopa Que Eu Pago'];
 const RC={Comum:'#9ca3af',Incomum:'#4ade80',Raro:'#60a5fa',Épico:'#c084fc',Lendário:'#fbbf24',Mítico:'#f43f5e'};
 // [id da foto (fotos/ID.jpg), nome, raridade, chance %, moedas/min, emoji reserva]  <- EDITE com seus amigos
-const CH=[['amigo1','Amigo 1','Comum',30,1,'🙂'],['amigo2','Amigo 2','Comum',25,1,'😎'],['amigo3','Amigo 3','Incomum',18,2,'🤠'],['amigo4','Amigo 4','Incomum',12,2,'🥸'],['amigo5','Amigo 5','Raro',10,5,'🤩'],['amigo6','Amigo 6','Épico',4,12,'😈'],['amigo7','Amigo 7','Lendário',.9,30,'👑'],['amigo8','Amigo 8','Mítico',.1,100,'🌟']];
+const CH=[['amigo1','BolsoChad','Comum',30,1,'🙂'],['amigo2','AiDentu','Comum',25,1,'😎'],['amigo3','Dorival','Incomum',18,2,'🤠'],['amigo4','PHBM','Incomum',12,2,'🥸'],['amigo5','Serie B','Raro',10,5,'🤩'],['amigo6','Deus Eren','Épico',4,12,'😈'],['amigo7','Farejador','Lendário',.9,30,'👑'],['amigo8','Final Boss','Mítico',.1,100,'🌟']];
 const av=c=>`<img src="fotos/${c[0]}.jpg" alt="${esc(c[1])}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${c[5]}'}))">`;
 const CHM=Object.fromEntries(CH.map(c=>[c[0],c]));
 const income=u=>{const c=CHM[u&&u.equipped];return c&&((u.chars||{})[c[0]]||0)>0?c[4]:0};
@@ -490,36 +516,58 @@ function penState(d){const p=d.picks||{};let ga=0,gb=0,ka=0,kb=0,win=null;const 
 function watchDuel(id){unsubD&&unsubD();unsubD=null;D=null;lastN=-1;if(!id)return renderDuel();unsubD=onSnapshot(doc(db,'duels',id),s=>{D=s.exists()?{id,...s.data()}:null;onDuel()},e=>fail(e,'x1'))}
 async function onDuel(){if(!D)return renderDuel();
  if(D.a===uid&&['declined','cancelled'].includes(D.status)&&!D.refunded){try{await runTransaction(db,async t=>{const dr=doc(db,'duels',D.id),d=await t.get(dr),u=await t.get(uref);if(d.data().refunded)return;t.update(dr,{refunded:true});t.update(uref,{coins:u.data().coins+d.data().aBet})})}catch(e){fail(e,'x1')}}
- if(D.status=='play'){const S=penState(D);if(lastN>=0&&S.next>lastN){revealUntil=Date.now()+2200;setTimeout(renderDuel,2300)}lastN=S.next;
+ if(D.status=='play'){const S=penState(D);if(cdId!==D.id&&S.next==0&&!Object.keys(D.picks||{}).length){cdId=D.id;cdUntil=Date.now()+3800}if(lastN>=0&&S.next>lastN){revealUntil=Date.now()+3000;setTimeout(renderDuel,3100)}lastN=S.next;
   const me=D.a===uid?'a':'b';if(S.win===me&&!D.paid){try{await runTransaction(db,async t=>{const dr=doc(db,'duels',D.id),d=await t.get(dr),u=await t.get(uref);if(d.data().paid)return;const q=penState(d.data());if(q.win!==me)return;
    const x=d.data(),ob=x[(me=='a'?'b':'a')+'Bet'],mb=x[me+'Bet'],mult=Math.abs(q.ga-q.gb)>=2?1.5:1.25,pay=mb+ob+Math.floor(ob*mult);t.update(dr,{paid:true,status:'done',winner:me,mult,pay});t.update(uref,{coins:u.data().coins+pay})})}catch(e){fail(e,'x1')}}}
  renderDuel()}
 const closeDuel=()=>setDoc(uref,{duel:null},{merge:true}).catch(e=>fail(e,'x1'));
+let cdId=null,cdUntil=0,cdT=null;
+const ZX=[17,83,50,17,83],ZY=[28,28,50,72,72],ZN=['canto superior esquerdo','canto superior direito','meio','canto inferior esquerdo','canto inferior direito'];
+const cdTxt=()=>{const r=cdUntil-Date.now();return r>2800?'3':r>1800?'2':r>800?'1':r>0?'VAI!':''};
+function cdTick(){const el=$('#cdN'),t=cdTxt();if(!el||!t){clearInterval(cdT);cdT=null;return t?0:renderDuel()}if(el.textContent!==t){el.textContent=t;el.parentNode.classList.toggle('go',t=='VAI!');el.style.animation='none';el.offsetWidth;el.style.animation=''}}
+const coinsNow=()=>parseInt($('#coins').textContent.replace(/\D/g,''))||0;
+function askBet(title,sub,def){return new Promise(res=>{const m=$('#bm'),i=$('#bmI'),e=$('#bmE'),bal=coinsNow();$('#bmT').textContent=title;$('#bmS').textContent=sub+' Seu saldo: '+bal+' 🪙';e.textContent='';i.value=def;
+ $('#bmQ').innerHTML=[10,50,100,500].filter(v=>v<bal).map(v=>`<button class="chip" data-v="${v}">${v}</button>`).join('')+`<button class="chip" data-v="${bal}">Tudo (${bal})</button>`;
+ m.classList.remove('hide');setTimeout(()=>{i.focus();i.select()},30);
+ const end=v=>{m.classList.add('hide');m.onclick=i.onkeydown=null;res(v)},ok=()=>{const v=Math.floor(+i.value);if(!(v>=1))return e.textContent='Digite um valor de 1 para cima.';if(v>bal)return e.textContent='Você só tem '+bal+' 🪙.';end(v)};
+ $('#bmOk').onclick=ok;$('#bmNo').onclick=()=>end(null);i.onkeydown=k=>{if(k.key=='Enter')ok();if(k.key=='Escape')end(null)};
+ m.onclick=ev=>{if(ev.target===m)return end(null);const c=ev.target.closest('[data-v]');if(c)i.value=c.dataset.v}})}
 function renderDuel(){const g=$('#x1Game'),lob=$('#x1Lobby');if(!D){g.classList.add('hide');lob.classList.remove('hide');return}
  lob.classList.add('hide');g.classList.remove('hide');const me=D.a===uid?'a':'b',op=me=='a'?'b':'a',on=esc(D[op+'Nick']||'?'),mb=D[me+'Bet'],ob=D[op+'Bet'];
  if(D.status=='invite'){g.innerHTML=`<p>⏳ Convite enviado para <b>${on}</b> (você apostou ${mb} 🪙). Aguardando resposta...</p><button class="btn alt" id="x1C">Cancelar convite</button>`;$('#x1C').onclick=()=>setDoc(doc(db,'duels',D.id),{status:'cancelled'},{merge:true});return}
  if(D.status=='declined'||D.status=='cancelled'){g.innerHTML=`<p>${D.status=='declined'?on+' recusou o desafio.':'Convite cancelado.'} Sua aposta foi devolvida.</p><button class="btn" id="x1X">Fechar</button>`;$('#x1X').onclick=closeDuel;return}
- const S=penState(D),locked=Date.now()<revealUntil,last=S.ks[S.ks.length-1],n=S.next,shooter=n%2==0?'a':'b',field=shooter==me?'s':'g',done=!!(D.picks&&D.picks['k'+n]&&D.picks['k'+n][field]!=null),
- dots=r=>{const a=S.ks.filter(k=>k.n%2==(r=='a'?0:1)).map(k=>`<span class="${k.goal?'g':'m'}"></span>`);while(a.length<5)a.push('<span></span>');return a.join('')},
- sc=`<div class="sb"><div>${me=='a'?'VOCÊ':on}<b>${S.ga}</b><div class="dots">${dots('a')}</div></div><div class="vs">x</div><div>${me=='b'?'VOCÊ':on}<b>${S.gb}</b><div class="dots">${dots('b')}</div></div></div>`;
- const rv=locked&&last?`<div class="rv ${last.goal?'win':'lose'}">${last.goal?'⚽ GOOOL!':'🧤 DEFENDEU!'}</div>`:'';let body;
- if(S.win){const won=S.win==me,mult=Math.abs(S.ga-S.gb)>=2?1.5:1.25;body=`${locked?rv:''}<div class="rv ${won?'win':'lose'}">${won?`🏆 VITÓRIA! +${mb+ob+Math.floor(ob*mult)} 🪙 (${mult}x)`:`💀 DERROTA! Você perdeu ${mb} 🪙`}</div><div style="text-align:center"><button class="btn" id="x1X">Fechar</button></div>`}
- else body=`${rv}<p class="msg">${locked?'':done?'⏳ Aguardando o adversário escolher...':`Sua vez de <b>${shooter==me?'CHUTAR':'DEFENDER'}</b>! Escolha o canto:`}</p>`;
- const off=S.win&&!locked?'disabled':'',goal=`<div class="goal">${Z.map((z,i)=>`<button class="${z}${locked&&last&&last.s==i?' ball':''}${locked&&last&&last.g==i?' glove':''}" data-z="${i}" ${off||(locked||done||S.win?'disabled':'')}>${ZL[i]}</button>`).join('')}</div>`;
- g.innerHTML=`<p class="sm">Apostas: você ${mb} 🪙 · ${on} ${ob} 🪙</p>${sc}${S.win&&!locked?'':goal}${body}`;
+ const S=penState(D),locked=Date.now()<revealUntil,cd=cdId==D.id&&Date.now()<cdUntil,last=S.ks[S.ks.length-1],n=S.next,iShoot=(n%2==0?'a':'b')==me,fld=iShoot?'s':'g',
+  mine=D.picks&&D.picks['k'+n]?D.picks['k'+n][fld]:null,done=mine!=null,lk=locked&&last,showEnd=S.win&&!locked,
+  K=locked?S.ks.slice(0,-1):S.ks,sg=r=>K.filter(k=>k.goal&&k.n%2==(r=='a'?0:1)).length,
+  dots=r=>{const a=K.filter(k=>k.n%2==(r=='a'?0:1)).map(k=>`<span class="${k.goal?'g':'m'}"></span>`);while(a.length<5)a.push('<span></span>');return a.join('')},
+  sc=`<div class="sb"><div>${me=='a'?'VOCÊ':on}<b>${sg('a')}</b><div class="dots">${dots('a')}</div></div><div class="vs">x</div><div>${me=='b'?'VOCÊ':on}<b>${sg('b')}</b><div class="dots">${dots('b')}</div></div></div>`;
+ let rl,fx='',ball='<span class="kg idle" style="--x:50;--y:62">🧤</span>';
+ const rc=iShoot?['shoot','⚽','SUA VEZ DE CHUTAR','Toque no canto do gol onde quer bater']:['keep','🧤','SUA VEZ DE DEFENDER','Toque no canto onde o goleiro vai pular'];
+ if(locked)rl='<div class="role wait"><i>⏱</i><div>RESULTADO...</div></div>';
+ else if(cd)rl=`<div class="role ${rc[0]}"><i>${rc[1]}</i><div>PREPARE-SE!<small>Você vai ${iShoot?'chutar':'defender'} primeiro</small></div></div>`;
+ else if(done)rl=`<div class="role wait"><i>✅</i><div>ESCOLHA FEITA<small>Aguardando ${on}...</small></div></div>`;
+ else rl=`<div class="role ${rc[0]} pulse"><i>${rc[1]}</i><div>${rc[2]}<small>${rc[3]}</small></div></div>`;
+ if(lk){const iw=(last.n%2==0?'a':'b')==me,t=last.goal?(iw?['GOOOL!','win','⚽ Você marcou!']:['SOFREU GOL','lose','⚽ '+on+' marcou']):(iw?['DEFENDERAM!','lose','🧤 O goleiro pegou seu chute']:['DEFENDEU!','win','🧤 Você pegou o chute!']);
+  ball=`<span class="kb" style="--x:${ZX[last.s]};--y:${ZY[last.s]}">⚽</span><span class="kg" style="--x:${ZX[last.g]};--y:${ZY[last.g]}">🧤</span>`;
+  fx=`<div class="wh"></div><div class="fx ${t[1]}">${t[0]}<small>${t[2]}</small></div>`+(t[1]=='win'?[[-150,-90],[150,-90],[-110,70],[110,70],[0,-130],[-175,0],[175,0]].map((d,i)=>`<i class="cf" style="--dx:${d[0]}px;--dy:${d[1]}px">${i%2?'✨':'⚽'}</i>`).join(''):'')}
+ const dis=locked||cd||done||S.win,
+  pitch=`<div class="pitch${lk&&last.goal?' shake':''}" data-r="${iShoot?'s':'k'}"><div class="gw"><div class="gl">${Z.map((z,i)=>`<button class="zn ${z}${mine===i?' pk':''}" data-z="${i}" aria-label="${ZN[i]}" ${dis?'disabled':''}></button>`).join('')}</div>${ball}</div>${lk?'':'<span class="spot">⚽</span>'}${cd?`<div class="cd${cdTxt()=='VAI!'?' go':''}"><span id="cdN">${cdTxt()}</span></div>`:''}${fx}</div>`;
+ let end='';if(showEnd){const won=S.win==me,mult=Math.abs(S.ga-S.gb)>=2?1.5:1.25;end=`<div class="end ${won?'win':'lose'}"><b>${won?'🏆':'💀'}</b>${won?`VITÓRIA!<br>+${mb+ob+Math.floor(ob*mult)} 🪙 (${mult}x)`:`DERROTA!<br>Você perdeu ${mb} 🪙`}<br><button class="btn" id="x1X">Fechar</button></div>`}
+ g.innerHTML=`<p class="sm">Apostas: você ${mb} 🪙 · ${on} ${ob} 🪙${S.win?'':' · Rodada '+((n>>1)+1)}</p>${sc}${showEnd?end:rl+pitch}`;
+ if(cd&&!cdT)cdT=setInterval(cdTick,150);
  const x=$('#x1X');if(x)x.onclick=closeDuel;g.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>pickZ(+b.dataset.z))}
-async function pickZ(z){if(!D)return;const S=penState(D),n=S.next,me=D.a===uid?'a':'b',field=(n%2==0?'a':'b')===me?'s':'g';
+async function pickZ(z){if(!D||(cdId==D.id&&Date.now()<cdUntil))return;const S=penState(D),n=S.next,me=D.a===uid?'a':'b',field=(n%2==0?'a':'b')===me?'s':'g';
  try{await setDoc(doc(db,'duels',D.id),{picks:{['k'+n]:{[field]:z}}},{merge:true})}catch(e){toast(fail(e,'x1'))}}
-async function challenge(to,nick){if(duelId)return toast('Você já está em um x1.');const b=Math.floor(+prompt('Quanto você aposta contra '+nick+'?','50'));if(!(b>=1))return;const id=doc(collection(db,'duels')).id;
+async function challenge(to,nick){if(duelId)return toast('Você já está em um x1.');const b=await askBet('⚽ Desafiar '+nick,'Quanto você quer apostar? Seu adversário escolhe o valor dele ao aceitar.',50);if(!b)return;const id=doc(collection(db,'duels')).id;
  try{await runTransaction(db,async t=>{const u=await t.get(uref);if(u.data().coins<b)throw Error('Saldo insuficiente.');if(u.data().duel)throw Error('Você já está em um x1.');
   t.update(uref,{coins:u.data().coins-b,duel:id});t.set(doc(db,'duels',id),{a:uid,b:to,aNick:u.data().nick||'Jogador',bNick:nick,aBet:b,bBet:0,status:'invite',picks:{},paid:false,refunded:false,at:serverTimestamp()})});toast('Desafio enviado!')}catch(e){toast(fail(e,'x1'))}}
-async function accept(id,x){const b=Math.floor(+prompt('Quanto você aposta contra '+x.aNick+'?',String(x.aBet)));if(!(b>=1))return;
+async function accept(id,x){const b=await askBet('⚽ '+x.aNick+' te desafiou','Ele apostou '+x.aBet+' 🪙. Quanto você aposta?',x.aBet);if(!b)return;
  try{await runTransaction(db,async t=>{const dr=doc(db,'duels',id),d=await t.get(dr),u=await t.get(uref);if(d.data().status!=='invite')throw Error('Esse desafio não está mais valendo.');if(u.data().coins<b)throw Error('Saldo insuficiente.');if(u.data().duel)throw Error('Você já está em um x1.');
   t.update(dr,{bBet:b,status:'play'});t.update(uref,{coins:u.data().coins-b,duel:id})});showTab('x1')}catch(e){toast(fail(e,'x1'))}}
 const decline=id=>setDoc(doc(db,'duels',id),{status:'declined'},{merge:true}).catch(e=>fail(e,'x1'));
 function subInv(){unsubInv&&unsubInv();unsubInv=onSnapshot(query(collection(db,'duels'),where('b','==',uid),where('status','==','invite')),s=>s.docs.forEach(d=>{if(inv.has(d.id))return;inv.add(d.id);const x=d.data();
  notify({ic:'⚽',title:esc(x.aNick)+' TE DESAFIOU!',text:`x1 de pênaltis · aposta dele: ${x.aBet} 🪙`,ttl:30000,btns:[{t:'Aceitar',cls:'g',f:()=>accept(d.id,x)},{t:'Recusar',cls:'alt',f:()=>decline(d.id)}]})}),e=>fail(e,'convites'))}
 function subOn(){if(unsubOn)return;unsubOn=onSnapshot(query(collection(db,'users'),orderBy('seen','desc'),limit(15)),s=>{const lim=getNow()-420000,a=s.docs.filter(d=>d.id!==uid&&(d.data().seen||0)>lim);
- $('#x1On').innerHTML=a.length?a.map(d=>`<li class="rk"><span>🟢 ${esc(d.data().nick||'Jogador')}</span><button class="chip" data-ch="${d.id}" data-nick="${esc(d.data().nick||'Jogador')}">⚽ Desafiar</button></li>`).join(''):'<li class="rk sm">Ninguém online agora. Chame um amigo!</li>'},e=>fail(e,'online'))}
+ $('#x1On').innerHTML=a.length?a.map(d=>`<li class="rk"><span>🟢 ${esc(d.data().nick||'Jogador')}</span><button class="chip" data-ch="${d.id}" data-nick="${esc(d.data().nick||'Jogador')}">⚽ Desafiar</button></li>`).join(''):'<li class="rk sm">Ninguém online agora. Chame um amigo!</li>'},e=>fail(e,'online'))}	
 $('#x1On').onclick=e=>{const b=e.target.closest('[data-ch]');if(b)challenge(b.dataset.ch,b.dataset.nick)};
 </script></body></html>
