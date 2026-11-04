@@ -158,16 +158,9 @@ const firebaseConfig = {
 };
 
 // ===== SEGUNDO BANCO (reserva). Cole aqui o firebaseConfig do outro projeto. Se ficar "COLE_AQUI", só o primeiro é usado. =====
-const firebaseConfig2 = {
-  apiKey: "AIzaSyB5gpBAqhzhLhRBCkqwKc9_9piey1vDok8",
-  authDomain: "horadabet-c92e4.firebaseapp.com",
-  projectId: "horadabet-c92e4",
-  storageBucket: "horadabet-c92e4.firebasestorage.app",
-  messagingSenderId: "312348867266",
-  appId: "1:312348867266:web:ec568e363d962b1467d95b"
-};
+const firebaseConfig2 = {apiKey:"COLE_AQUI",authDomain:"SEU-PROJETO-2.firebaseapp.com",projectId:"SEU-PROJETO-2",storageBucket:"",messagingSenderId:"",appId:"COLE_AQUI"};
 // ===== E-mails de admin (veem o painel de bloqueio) =====
-const ADMINS=['vitorwilkes99@gmail.com'];
+const ADMINS=['seu.email@gmail.com'];
 const $=s=>document.querySelector(s);
 if(firebaseConfig.apiKey.startsWith("COLE")){$('#cfgerr').classList.remove('hide');throw 0}
 const CFG=[firebaseConfig,firebaseConfig2].filter(c=>!String(c.apiKey).startsWith("COLE")),LS=(k,v)=>{try{return v===undefined?localStorage.getItem(k):localStorage.setItem(k,v)}catch(e){return null}};
